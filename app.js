@@ -23,11 +23,12 @@ app.get("/api/courses", (req, res) => {
 // get request with an id
 app.get("/api/courses/:id", (req, res) => {
   const course = courses.find((c) => c.id === parseInt(req.params.id));
-  if (!course) {
-    res.status(404).send("the course you are looking for does not exist");
-  } else {
-    res.send(course);
-  }
+  if (!course)
+    return res
+      .status(404)
+      .send("the course you are looking for does not exist");
+
+  res.send(course);
 });
 
 // post request
